@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="dynamic-fields-module.js"></script>
+<link rel="stylesheet" href="page.css" type="text/css"/>
+<body>
+<div ng-app="dynamicfields1" ng-controller="some-contoller">
+	<form>
+		<h2>Dynamic Field</h2>
+		<dynamicsection datasource="fields1" model="model1"></dynamicsection>	
+	</form>
+	<form>
+		<h2>Dynamic Dropdown Dependency</h2>
+		<dynamicsection datasource="fields2" model="model2"></dynamicsection>	
+	</form>
+</div>
+
+<script>
+var app = angular.module("dynamicfields1", ['dynamic-fields'])
+  .controller('some-contoller', ['$scope', function($scope) {
+		$scope.model1 = {};
+		$scope.fields1 = [
+			{       
+					   id: '_userId',
+					model: 'userName',
+					label: {text: 'Text Field', css: 'label'},
+					field: 'input', 
+			   attributes: [
+						{name: 'id', value : '_userId'},
+						{name: 'type', value : 'text'}, 
+						{name: 'class', value : 'field-class'}, 
+						{name: 'maxlength', value : 15}, 
+						{name: 'value', value : 'User Name'}
+					]		
+			}, 	{       
+					   id: '_pwd',
+					model: 'password',
+					label: {text: 'Password Field', css: 'label'},
+					field: 'input', 
+			   attributes: [
+						{name: 'id', value : '_pwd'},
+						{name: 'type', value : 'password'}, 
+						{name: 'class', value : 'field-class'}, 
+						{name: 'maxlength', value : 8}, 
+						{name: 'value', value : 'password'}
+					]		
+			}, 	{       
+					   id: '_radio1',
+					model: 'group',					   
+					label: {text: 'Radio A', css: 'label'},
+					field: 'input', 
+			   attributes: [
+						{name: 'id', value : '_radio1'},
+						{name: 'type', value : 'radio'}, 
+						{name: 'value', value : 'A'},
+						{name: 'class', value : 'field-class'}
+					]		
+			}, 	{       
+					   id: '_radio2',	
+					model: 'userName',					   
+					label: {text: 'Radio B', css: 'label'},
+					field: 'input', 
+			   attributes: [
+						{name: 'id', value : '_radio2'},			   
+						{name: 'type', value : 'radio'}, 
+						{name: 'value', value : 'B'},
+						{name: 'checked', value : 'true'},
+						{name: 'class', value : 'field-class'}
+					]		
+			}, 	{       
+					   id: '_chkbx',
+					model: '_chkbx',					   
+					label: {text: 'Check Box', css: 'label'},
+					field: 'input', 
+			   attributes: [
+						{name: 'id', value : '_chkbx'},			   
+						{name: 'type', value : 'checkbox'}, 
+						{name: 'value', value : 'C'},
+						{name: 'checked', value : 'true'},						
+						{name: 'class', value : 'field-class'}
+					]		
+			}, 	{       
+					   id: '_txtarea',
+					model: '_txtarea',					   
+					label: {text: 'Text Area', css: 'label'},
+					field: 'textarea',
+					value: 'Some thing long!',	
+			   attributes: [
+						{name: 'id', value : '_txtarea'},				   
+						{name: 'class', value : 'field-class'}
+					]		
+			}, 	{       
+					   id: '_mltslct',	
+					model: '_mltslct',					   
+					label: {text: 'Multiple Selection', css: 'label'},
+					field: 'select',
+				  options: {
+					    value: ['option1', 'option4'],
+			  remote_data_set: null,
+			   local_data_set: [
+							{value: 'option1', text: 'Option 1', defaultSelect: true}, 
+							{value: 'option2', text: 'Option 2', defaultSelect: false}, 
+							{value: 'option3', text: 'Option 3', defaultSelect: true}, 
+							{value: 'option4', text: 'Option 4', defaultSelect: false}
+						]},
+			   attributes: [
+						{name: 'id', value : '_mltslct'},				   
+						{name: 'class', value : 'field-class'},
+						{name: 'multiple', value : 'multiple'}
+					]		
+			}, 	{       
+					   id: '_slct_lcl',	
+					model: '_slct_lcl',					   
+					label: {text: 'Local Drop Down', css: 'label'},
+					field: 'select',
+				  options: {
+						value: ['option1'],
+			  remote_data_set: null,
+			   local_data_set: [
+							{value: '', text: '--Select--', defaultSelect: false}, 
+							{value: 'option1', text: 'Option 1', defaultSelect: false}, 
+							{value: 'option2', text: 'Option 2', defaultSelect: false}, 
+							{value: 'option3', text: 'Option 3', defaultSelect: true}, 
+							{value: 'option4', text: 'Option 4', defaultSelect: false}
+						]},
+			   attributes: [
+						{name: 'id', value : '_slct_lcl'},			   
+						{name: 'class', value : 'field-class'}
+					]		
+			}, 	{       
+					   id: '_slct_rmt',	
+					model: '_slct_rmt',					   
+					label: {text: 'Remote Drop Down', css: 'label'},
+					field: 'select',
+				  options: {
+				  	    value: ['INDIA'],
+			  remote_data_set: {
+							service: 'http://localhost:8080/loaddata1',
+							 params: { forKey: null}
+					   },
+			   local_data_set: null
+					    },
+			   attributes: [
+						{name: 'id', value : '_slct_rmt'},			   
+						{name: 'class', value : 'field-class'}
+					]		
+			}, 	{      
+					   id: '_slct_rmt_2',	
+					model: '_slct_rmt_2',					   
+					label: {text: 'Remote Drop Down 2', css: 'label'},
+					field: 'select',
+				  options: {
+						value: null,
+			  remote_data_set: {
+							service: 'http://localhost:8080/loaddata2',
+							 params: { forKey: null}
+					   },
+			   local_data_set: null
+						},
+			   attributes: [
+						{name: 'id', value : '_slct_rmt_2'},			   
+						{name: 'class', value : 'field-class'}
+					]		
+			}
+		];
+		$scope.model2 = {};
+		$scope.fields2 = [
+			{       
+					   id: '_cntry',
+					model: '_cntry',					   
+					label: {text: 'Country', css: 'label'},
+					field: 'select',
+				   parent: null,
+			        child: '_ste',
+				  options: {
+						value: ['USA'],				  
+			  remote_data_set: {
+							service: 'http://localhost:8080/loadcountry',
+							 params: null
+					   },
+			   local_data_set: null
+					    },
+			   attributes: [
+						{name: 'id', value : '_cntry'},			   
+						{name: 'class', value : 'field-class'}
+					]		
+			}, 	{       
+					   id: '_ste',	
+					model: '_ste',					   
+					label: {text: 'State', css: 'label'},
+					field: 'select',
+			       parent: '_cntry',
+				    child: null,
+				  options: {
+						value: null,				  
+			  remote_data_set: {
+							service: 'http://localhost:8080/loadstate',
+							 params: { forKey: null}
+					   },
+			   local_data_set: null
+					    },
+			   attributes: [
+						{name: 'id', value : '_ste'},			   
+						{name: 'class', value : 'field-class'}
+					]		
+			}];
+  }]);
+
+</script>
+</body>
+</html>
