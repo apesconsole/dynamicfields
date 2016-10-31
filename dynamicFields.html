@@ -50,7 +50,7 @@ var app = angular.module("dynamicfields1", ['dynamic-fields'])
 					label: {text: 'Radio A', css: 'label'},
 					field: 'input', 
 			   attributes: [
-						{name: 'id', value : '_radio1'},
+						{name: 'name', value : 'group'},
 						{name: 'type', value : 'radio'}, 
 						{name: 'value', value : 'A'},
 						{name: 'class', value : 'field-class'}
@@ -61,7 +61,7 @@ var app = angular.module("dynamicfields1", ['dynamic-fields'])
 					label: {text: 'Radio B', css: 'label'},
 					field: 'input', 
 			   attributes: [
-						{name: 'id', value : '_radio2'},			   
+						{name: 'name', value : 'group'},			   
 						{name: 'type', value : 'radio'}, 
 						{name: 'value', value : 'B'},
 						{name: 'checked', value : 'true'},
@@ -166,12 +166,12 @@ var app = angular.module("dynamicfields1", ['dynamic-fields'])
 		$scope.model2 = {};
 		$scope.fields2 = [
 			{       
-					   id: '_cntry',
-					model: '_cntry',					   
+					   id: '_cntry2',
+					model: '_cntry2',					   
 					label: {text: 'Country', css: 'label'},
 					field: 'select',
 				   parent: null,
-			        child: '_ste',
+			        child: '_ste2',
 				  options: {
 						value: ['USA'],				  
 			  remote_data_set: {
@@ -181,15 +181,15 @@ var app = angular.module("dynamicfields1", ['dynamic-fields'])
 			   local_data_set: null
 					    },
 			   attributes: [
-						{name: 'id', value : '_cntry'},			   
+						{name: 'id', value : '_cntry2'},			   
 						{name: 'class', value : 'field-class'}
 					]		
 			}, 	{       
-					   id: '_ste',	
-					model: '_ste',					   
+					   id: '_ste2',	
+					model: '_ste2',					   
 					label: {text: 'State', css: 'label'},
 					field: 'select',
-			       parent: '_cntry',
+			       parent: '_cntry2',
 				    child: null,
 				  options: {
 						value: null,				  
@@ -200,7 +200,7 @@ var app = angular.module("dynamicfields1", ['dynamic-fields'])
 			   local_data_set: null
 					    },
 			   attributes: [
-						{name: 'id', value : '_ste'},			   
+						{name: 'id', value : '_ste2'},			   
 						{name: 'class', value : 'field-class'}
 					]		
 			}];
