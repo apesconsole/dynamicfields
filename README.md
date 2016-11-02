@@ -25,14 +25,14 @@ The Component generates HTML from a JSON input. It handles the complexities of e
 ##Initialization
 
 ##HTML Code
-```
+```htm
 <html lang="en-US">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="dynamic-fields-module.js"></script>
 <div ng-app="dynamicfields1" ng-controller="some-contoller">
     <form>
         <h2>Dynamic Field</h2>
-        <-- Custom directive and custom attributes -->
+        <!-- Custom directive and custom attributes -->
         <dynamicsection 
                datasource="my_field_input" 
                model="my_model">
@@ -45,7 +45,7 @@ The Component generates HTML from a JSON input. It handles the complexities of e
 ```
 
 ##Script
-```
+```js
 var app = angular.module("dynamicfields1", ['dynamic-fields'])
   .controller('some-contoller', ['$scope', function($scope) {
 		$scope.my_model = {};
@@ -199,7 +199,7 @@ var app = angular.module("dynamicfields1", ['dynamic-fields'])
 
 ##Dependency Management:
 A typical scenario of Country, Sate, Zip relations. At any point of time we might not be sure what the user selects on the Country which has to load the corresponding States which again will dictate the zipcodes
-```
+```js
 		$scope.my_field_input = [
 			{       
 					   id: '_cntry',
